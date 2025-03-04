@@ -1,0 +1,181 @@
+:root {
+    --pink: #ff69b4;
+    --purple: #800080;
+    --light-bg: #fff5f9;
+    --vh: 1vh;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    background: linear-gradient(45deg, var(--pink), var(--purple));
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--light-bg);
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 95vw;
+    max-width: 500px;
+    border: 3px solid white;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+h2 {
+    color: var(--purple);
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin: 0 0 clamp(1rem, 3vw, 1.5rem);
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+#secretMessage {
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
+    color: var(--purple);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    margin: clamp(0.5rem, 2vw, 1rem) 0;
+    background: white;
+    border-radius: 15px;
+    border: 2px solid var(--pink);
+    transition: all 0.8s ease;
+    min-height: 100px;
+    max-height: 40vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    word-wrap: break-word;
+}
+
+.blur-effect {
+    filter: blur(6px);
+    -webkit-filter: blur(6px);
+    opacity: 0.9;
+}
+
+#timer {
+    color: var(--purple);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    margin: clamp(1rem, 3vw, 1.5rem) 0;
+    padding: clamp(0.8rem, 2vw, 1rem);
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+}
+
+.debug-info {
+    background: rgba(255,255,255,0.9);
+    padding: clamp(0.8rem, 2vw, 1rem);
+    margin-top: clamp(1rem, 3vw, 1.5rem);
+    border-radius: 8px;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    color: #666;
+    border: 1px solid #eee;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: clamp(5px, 2vw, 10px);
+    margin-top: clamp(10px, 2vw, 15px);
+}
+
+.countdown-item {
+    background: rgba(255,255,255,0.9);
+    padding: clamp(5px, 1.5vw, 10px);
+    border-radius: 10px;
+    border: 2px solid var(--pink);
+    min-width: 70px;
+}
+
+.countdown-number {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    font-weight: bold;
+    color: var(--purple);
+}
+
+.countdown-label {
+    font-size: clamp(0.6rem, 2vw, 0.8rem);
+    color: var(--pink);
+    text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+    .modal {
+        border-radius: 15px;
+        padding: 1.2rem;
+    }
+    
+    #secretMessage {
+        max-height: 50vh;
+        padding: 1rem;
+    }
+    
+    .countdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (orientation: landscape) {
+    .modal {
+        max-height: 80vh;
+    }
+}
+/* Add these styles to your CSS */
+.particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 1.5rem;
+    animation: float 3s ease-out forwards;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Add this to your existing CSS */
+.confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998; /* Ensure it's below particles but above other content */
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff6f61; /* Default color */
+    opacity: 0.8;
+    animation: confetti-fall 5s linear infinite;
+}
+
+@keyframes confetti-fall {
+    0% { transform: translateY(-10vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
